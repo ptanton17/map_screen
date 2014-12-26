@@ -1,5 +1,8 @@
 #include <MeggyJrSimple.h>
 int mapscreen = 2; //this variable deals with the screens
+int x_dot_cord = 2;
+int y_dot_cord = 2;
+
 void setup()
 {
   MeggyJrSimpleSetup();
@@ -9,10 +12,11 @@ void setup()
 }
 void loop ()
 {
+Cursor_Position(); // finds cursor position
 DisplaySlate();
 
 delay(10);
-CheckButtonsDown();
+
 if (Button_Left)
 {
   mapscreen --;
@@ -144,12 +148,45 @@ if (mapscreen == 2)
   
   if (mapscreen == 5)
     {
-    
+    for (int x=0; x<8; x++) // simple draw commands
+    {
+      for(int y=0; y<8;y++) 
+      {
+        DrawPx(x,y,Green);
+      }
     }
+    for (int y = 7;y>6;y--)
+      DrawPx(3,y,9);
+    }
+    
   
   if (mapscreen == 6)
     {
     
     }
+
+ 
   
+}
+
+
+void Cursor_Position()
+{
+  CheckButtonsPress();
+  if (Button_Left)
+  {
+    x_dot_cord --;
+  }
+  if (Button_Right)
+  {
+    x_dot_cord ++ ;
+  }
+  if (Button_Up)
+  {
+    y_dot_cord ++;
+  }
+  if (Button_Down)
+  {
+    y_dot_cord --;
+  }
 }
