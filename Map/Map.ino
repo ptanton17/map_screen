@@ -17,7 +17,7 @@ DisplaySlate();
 
 delay(10);
 
-if (Button_Left)
+if (Button_Left) //cursor movement
 {
   mapscreen --;
 }
@@ -189,4 +189,5 @@ void Cursor_Position()
   {
     y_dot_cord --;
   }
+  DrawPx(x_dot_cord,y_dot_cord,6);
 }
