@@ -211,6 +211,7 @@ void Cursor_Position()
       x_dot_cord -- ;
     }
   }
+  DrawPx(x_dot_cord,y_dot_cord,6);
 }
   
   
