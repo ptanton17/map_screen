@@ -12,28 +12,14 @@ void setup()
 }
 void loop ()
 {
-Cursor_Position(); // finds cursor position
+
 DisplaySlate();
 
 delay(10);
 
-if (Button_Left) //cursor movement
-{
-  mapscreen --;
-}
-if (Button_Right)
-{
-  mapscreen ++;
-}
-if (Button_Down)
-{
-  mapscreen = mapscreen -4;
-}
-if (Button_Up)
-{
-  mapscreen = mapscreen +4;
-}
 
+
+Cursor_Position(); // finds cursor position
 maps();
 }
 
@@ -175,19 +161,56 @@ void Cursor_Position()
   CheckButtonsPress();
   if (Button_Left)
   {
-    x_dot_cord --;
+    if(x_dot_cord == 0)
+    {
+      mapscreen --;
+      x_dot_cord = 7;
+    }
+    else 
+    {
+      x_dot_cord -- ;
+    }
   }
+  
   if (Button_Right)
   {
-    x_dot_cord ++ ;
+    if(x_dot_cord == 7)
+    {
+      mapscreen ++;
+      x_dot_cord = 0;
+    }
+    else 
+    {
+      x_dot_cord ++ ;
+    }
   }
+  
   if (Button_Up)
   {
-    y_dot_cord ++;
+    if(y_dot_cord == 7)
+    {
+      mapscreen = mapscreen -4;
+      y_dot_cord = 0;
+    }
+    else 
+    {
+      y_dot_cord ++ ;
+    }
   }
+  
+  
   if (Button_Down)
   {
-    y_dot_cord --;
+    if(x_dot_cord == 0)
+    {
+      mapscreen = mapscreen +4;
+      x_dot_cord = 7;
+    }
+    else 
+    {
+      x_dot_cord -- ;
+    }
   }
-  DrawPx(x_dot_cord,y_dot_cord,6);
 }
+  
+  
