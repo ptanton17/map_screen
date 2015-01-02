@@ -19,8 +19,10 @@ delay(10);
 
 
 
-Cursor_Position(); // finds cursor position
+
 maps();
+
+Cursor_Position(); // finds cursor position adn draws it
 }
 
 void maps()
@@ -156,59 +158,95 @@ if (mapscreen == 2)
 }
 
 
-void Cursor_Position()
+void Cursor_Position() //sets cursor and changes maps
 {
   CheckButtonsPress();
   if (Button_Left)
   {
-    if(x_dot_cord == 0)
+    if(x_dot_cord == 0)//detects borders
     {
-      mapscreen --;
-      x_dot_cord = 7;
+      mapscreen --;// changes map
+      x_dot_cord = 7; //changes cursor on map
+      if (ReadPx(4,6) == 0)// detects illegal maps
+      {
+        x_dot_cord = 0;//resets cursor on old map
+        mapscreen ++;//resets map
+      }
     }
     else 
     {
-      x_dot_cord -- ;
+      x_dot_cord -- ;// actual movement of cursor in normal use
+      if (ReadPx(x_dot_cord,y_dot_cord)==Blue) // detects water
+      {
+        x_dot_cord ++; //resets cursor
+      }
     }
   }
   
   if (Button_Right)
   {
-    if(x_dot_cord == 7)
+    if(x_dot_cord == 7)//detects borders
     {
-      mapscreen ++;
-      x_dot_cord = 0;
+      mapscreen ++;// changes map
+      x_dot_cord = 0; //changes cursor on map
+      if (ReadPx(4,6) == 0)// detects illegal maps
+      {
+        x_dot_cord = 7;//resets cursor on old map
+        mapscreen --;//resets map
+      }
     }
     else 
     {
-      x_dot_cord ++ ;
+      x_dot_cord ++ ;// actual movement of cursor in normal use
+      if (ReadPx(x_dot_cord,y_dot_cord)==Blue) // detects water
+      {
+        x_dot_cord --; //resets cursor
+      }
     }
   }
   
   if (Button_Up)
   {
-    if(y_dot_cord == 7)
+    if(y_dot_cord == 7)//detects borders
     {
-      mapscreen = mapscreen -4;
-      y_dot_cord = 0;
+      mapscreen = mapscreen -4;// changes map
+      y_dot_cord = 0; //changes cursor on map
+      if (ReadPx(4,6) == 0)// detects illegal maps
+      {
+        y_dot_cord = 7;//resets cursor on old map
+        mapscreen = mapscreen +4;//resets map
+      }
     }
     else 
     {
-      y_dot_cord ++ ;
+      y_dot_cord ++ ;// actual movement of cursor in normal use
+      if (ReadPx(x_dot_cord,y_dot_cord)==Blue) // detects water
+      {
+        y_dot_cord --; //resets cursor
+      }
     }
   }
   
   
   if (Button_Down)
   {
-    if(x_dot_cord == 0)
+    if(y_dot_cord == 0)//detects borders
     {
-      mapscreen = mapscreen +4;
-      x_dot_cord = 7;
+      mapscreen = mapscreen +4; // changes map
+      y_dot_cord = 7; //changes cursor on map
+       if (ReadPx(4,6) == 0) // detects illegal maps
+      {
+        y_dot_cord = 0;//resets cursor on old map
+        mapscreen = mapscreen -4;//resets map
+      }
     }
     else 
     {
-      x_dot_cord -- ;
+      y_dot_cord -- ; // actual movement of cursor in normal use
+      if (ReadPx(x_dot_cord,y_dot_cord)==Blue) // detects water
+      {
+        y_dot_cord ++; //resets cursor
+      }
     }
   }
   DrawPx(x_dot_cord,y_dot_cord,6);
