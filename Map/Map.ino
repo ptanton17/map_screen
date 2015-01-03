@@ -1,12 +1,21 @@
+
 #include <MeggyJrSimple.h>
+
 int mapscreen = 2; //this variable deals with the screens
 int x_dot_cord = 2;
 int y_dot_cord = 2;
+int Map_1Enemy_x = 0;
+int Map_1Enemy_y = 0;
+int Map_2Enemy_x = 0;
+int Map_2Enemy_y = 0;
+int Map_3Enemy_x = 0;
+int Map_3Enemy_y = 0;
+
 
 void setup()
 {
   MeggyJrSimpleSetup();
-  
+  Spawn();
 
 
 }
@@ -21,7 +30,7 @@ delay(10);
 
 
 maps();
-
+void Draw_Creatures();
 Cursor_Position(); // finds cursor position adn draws it
 }
 
@@ -235,10 +244,10 @@ void Cursor_Position() //sets cursor and changes maps
       mapscreen = mapscreen +4; // changes map
       y_dot_cord = 7; //changes cursor on map
        if (ReadPx(4,6) == 0) // detects illegal maps
-      {
-        y_dot_cord = 0;//resets cursor on old map
-        mapscreen = mapscreen -4;//resets map
-      }
+       {
+         y_dot_cord = 0;//resets cursor on old map
+         mapscreen = mapscreen -4;//resets map
+       }
     }
     else 
     {
@@ -253,3 +262,86 @@ void Cursor_Position() //sets cursor and changes maps
 }
   
   
+void Spawn()
+{
+  Map_1Enemy_x = random(8);
+  Map_1Enemy_y = random(8);
+  Map_2Enemy_x = random(8);
+  Map_2Enemy_y = random(8);
+  Map_3Enemy_x = random(8);
+  Map_3Enemy_y = random(8);
+}
+
+void Draw_Creatures() //updates enemies
+{
+  if (abs(Map_1Enemy_x - x_dot_cord) < abs(Map_1Enemy_y - y_dot_cord)) //if the x distance is greater than the y distance 
+  {
+    if (Map_1Enemy_x - x_dot_cord >= 0)//if enemy is to the right of player
+    {
+      Map_1Enemy_x --; // move enemy to the left
+    }
+    else // if enemy is to the left of player
+    {
+      Map_1Enemy_x ++; // move enemy to the right
+    }
+  }
+  if (abs(Map_1Enemy_x - x_dot_cord) > abs(Map_1Enemy_y - y_dot_cord)) //if the x distance is less than the y distance 
+  {
+    if (Map_1Enemy_y - y_dot_cord >= 0)//if enemy is above player
+    {
+      Map_1Enemy_y --; // move enemy to the down
+    }
+    else // if enemy is below player
+    {
+      Map_1Enemy_y ++; // move enemy up
+    }
+  }
+  if (abs(Map_2Enemy_x - x_dot_cord) < abs(Map_2Enemy_y - y_dot_cord)) //if the x distance is greater than the y distance 
+  {
+    if (Map_2Enemy_x - x_dot_cord >= 0)//if enemy is to the right of player
+    {
+      Map_2Enemy_x --; // move enemy to the left
+    }
+    else // if enemy is to the left of player
+    {
+      Map_2Enemy_x ++; // move enemy to the right
+    }
+  }
+  if (abs(Map_2Enemy_x - x_dot_cord) > abs(Map_2Enemy_y - y_dot_cord)) //if the x distance is greater than the y distance 
+  {
+    if (Map_2Enemy_y - y_dot_cord >= 0)//if enemy is above player
+    {
+      Map_2Enemy_y --; // move enemy down
+    }
+    else // if enemy is below player
+    {
+      Map_1Enemy_y ++; // move enemy up
+    }
+  }
+  if (abs(Map_3Enemy_x - x_dot_cord) < abs(Map_3Enemy_y - y_dot_cord)) //if the x distance is greater than the y distance 
+  {
+    if (Map_3Enemy_x - x_dot_cord >= 0)//if enemy is to the right of player
+    {
+      Map_3Enemy_x --; // move enemy to the left
+    }
+    else // if enemy is to the left of player
+    {
+      Map_3Enemy_x ++; // move enemy to the right
+    }
+  }
+  if (abs(Map_3Enemy_x - x_dot_cord) > abs(Map_3Enemy_y - y_dot_cord)) //if the x distance is greater than the y distance 
+  {
+    if (Map_3Enemy_y - x_dot_cord >= 0)//if enemy is above player
+    {
+      Map_3Enemy_y --; // move enemy down
+    }
+    else // if enemy is below player
+    {
+      Map_3Enemy_y ++; // move enemy up
+    }
+  }
+  DrawPx(Map_1Enemy_x,Map_1Enemy_y,Red);//draws enemies
+  DrawPx(Map_2Enemy_x,Map_2Enemy_y,Red);//draws enemies
+  DrawPx(Map_3Enemy_x,Map_3Enemy_y,Red);//draws enemies
+}
+
