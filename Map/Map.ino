@@ -25,13 +25,11 @@ void loop ()
 DisplaySlate();
 
 delay(10);
-
-
-
-
 maps();
+
 void Draw_Creatures();
-Cursor_Position(); // finds cursor position adn draws it
+
+Cursor_Position(); // finds cursor position and draws it
 }
 
 void maps()
@@ -139,12 +137,22 @@ if (mapscreen == 2)
     }
   
   if (mapscreen == 7)
+   {
+     for (int x=0; x<8; x++) // simple draw commands
     {
-    
+      for(int y=0; y<8;y++) 
+      {
+        DrawPx(x,y,Green);
+      }
     }
-  
-  if (mapscreen == 5)
+   for(int x = 0;x<6; x++)
     {
+     DrawPx(x,0,0);
+    } 
+   }
+  
+  if (mapscreen == 6)
+   {
     for (int x=0; x<8; x++) // simple draw commands
     {
       for(int y=0; y<8;y++) 
@@ -153,13 +161,55 @@ if (mapscreen == 2)
       }
     }
     for (int y = 7;y>6;y--)
+    {
       DrawPx(3,y,9);
+    }
+    for (int y = 6;y>4;y--)
+    {
+      DrawPx(2,y,9);
+    }
+     for (int y = 5;y>4;y--)
+    {
+      DrawPx(1,y,9);
+    }
+    DrawPx(0,4,9);
+    DrawPx(2,4,Blue);
+    DrawPx(3,5,Blue);
+    for(int x = 4;x<5;x++)
+    {
+      for(int y = 3;y<5;y++)
+      {
+        DrawPx(x,y,Blue);
+      }
+    }
     }
     
   
-  if (mapscreen == 6)
+  if (mapscreen == 5)
     {
-    
+      for (int x=0; x<8; x++) // simple draw commands
+      {
+        for(int y=0; y<8;y++) 
+        {
+          DrawPx(x,y,Green);
+        }
+      }
+      for(int y = 7;y>5;y--)
+        {
+          DrawPx(2,y,9);
+        }
+      for(int x = 3;x<6;x++)
+      {  
+        DrawPx(x,3,9);
+      }
+      for(int y=5;y>4;y--)
+      {
+        DrawPx(3,y,9);
+      }
+      for(int x=7;x>5;x--)
+        {
+          DrawPx(x,4,9);
+        }
     }
 
  
@@ -341,7 +391,7 @@ void Draw_Creatures() //updates enemies
     }
   }
   DrawPx(Map_1Enemy_x,Map_1Enemy_y,Red);//draws enemies
-  DrawPx(Map_2Enemy_x,Map_2Enemy_y,Red);//draws enemies
-  DrawPx(Map_3Enemy_x,Map_3Enemy_y,Red);//draws enemies
+  DrawPx(Map_2Enemy_x,Map_2Enemy_y,0);//draws enemies
+  DrawPx(Map_3Enemy_x,Map_3Enemy_y,Blue);//draws enemies
 }
 
