@@ -10,7 +10,7 @@ int Map_2Enemy_x = 0;
 int Map_2Enemy_y = 0;
 int Map_3Enemy_x = 0;
 int Map_3Enemy_y = 0;
-
+int temporary_counter = 1;
 
 void setup()
 {
@@ -27,7 +27,7 @@ DisplaySlate();
 delay(10);
 maps();
 
-void Draw_Creatures();
+Draw_Creatures();
 
 Cursor_Position(); // finds cursor position and draws it
 }
@@ -314,6 +314,7 @@ void Cursor_Position() //sets cursor and changes maps
   
 void Spawn()
 {
+
   Map_1Enemy_x = random(8);
   Map_1Enemy_y = random(8);
   Map_2Enemy_x = random(8);
