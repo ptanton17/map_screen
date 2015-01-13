@@ -12,6 +12,7 @@ int Map_3Enemy_x = 0;
 int Map_3Enemy_y = 0;
 int temporary_counter = 1;
 int turn_boolean = 0;
+int gameState = 2;
 void setup()
 {
   MeggyJrSimpleSetup();
@@ -30,6 +31,7 @@ maps();
 Draw_Creatures();
 
 Cursor_Position(); // finds cursor position and draws it
+Check_Postion();//checks if touching enemy.
 }
 
 void maps()
@@ -444,6 +446,14 @@ void Draw_Creatures() //updates enemies
   DrawPx(Map_3Enemy_x,Map_3Enemy_y,Red);//draws enemies
 }
 
+void Check_Postion()
+{
+  if (ReadPx (x_dot_cord,y_dot_cord == Red))
+  {
+    gameState = 2;
+    Serial.print("gameState = 2;");
+  }
+}
   
   
 /* comments about program.

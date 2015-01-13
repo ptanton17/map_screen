@@ -1,0 +1,32 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1265\cocoasubrtf200
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+\margl1440\margr1440\vieww10800\viewh13880\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural
+
+\f0\fs24 \cf0 This project was defiantly an interesting one. I experimented with many different ways to get around obstacles and in doing so created even more. These are the basic parts of my map game:\
+\
+Enemies\'97	\
+	One of the hardest problems was the enemies. They are spawned in at random. on the page. This was not to difficult. The next problem is pathfinding. I used some if/else logic to get them to move closer to the play along the axis that was further from the player. For instance if an enemy was 3 pixels up and 5 pixels to the right of the player it will move left on the first move and left again on the second move until the distance up and right are equal. Then it will zig-zag its way towards the play on a rough diagonal. This was a easy form of pathfinding. Although this is technically pathfinding it is still very simple. The enemies had no obstacles and no ability to judge whiter it wanted to approach the player. The next problem with the Enemies was their movement. I decided early on that i wanted the game to be turn based but i was only able to implement that later in the process. I was then plagued with either teleporting enemies or non moving ones. \
+\
+Map\'97\
+	The map was a series of for-loops and Draw commands. This took a fairly long time to make but was very simple. It was more of a mindless task. I created one impassable terrain for the player and that was water. I included a ReadPx command to take care of this. It was not the most glamours or clean way of doing it but it worked. The change of maps was an odd concept that used different maps that changed when switched over, like screens in a projector. \
+	\
+Player\'97\
+	The player was nothing to write home about. It is just extension of things we have done in class.\
+\
+Border of map\'97\
+	The border of the map is made by using a ReadPx to determine if a square in the new map is blank. (This means that there is null data in that position.)  \
+\
+\
+Bugs\'97 \
+	When you venture off of the screen that is not in my screens you wrap down to the bottom and leave a trail. The enemies also leave a trail. You now can\'92t move to any other maps. My guess for this is that the map screen method is not being called, though i would not know why. \
+	As i have mentioned before the enemies either teleport or don\'92t move at all. In the case of the teleport it is because of a lack of delay and the wait command that i use to regulate turns is not stopping the enemies. In the case of a lack of movement the wait command is either not firing or is being changed before the main loop reaches the enemy methods. \
+	The enemies sometimes have an issue with pathfinding. They will sometimes move only along one axis or will move in directions other than where they are supposed to go. I assume that it is an issue with the pathfinding code itself and is an error with a greater than/less than or a ++/\'97 error. \
+\
+\
+Hindsight\'97 \
+	I probably could have put the map data in a struct. Is would have been easier to read but would have taken up more space. \
+	I should have experimented with structs and random commands more often during this game. I could have used one struct for every map screen and that would have fixed the possible issue of changing over maps. \
+	If i really wanted to use the random function more often i could have attempted a procedurally generated map. Doing this though would have created some major challenges in terms of probability and balancing. \
+	If i could have done the multiplayer system i could have sent over small amounts of essential variables. Things like coordinates, map screens, and gamestates. This would have been slightly more difficult for Jonathans game as many more variables are being processed.}
